@@ -1,7 +1,7 @@
 import * as process from "node:process";
 import pLimit from "p-limit";
-import { crawlSiteAsync } from "./concurrent-crawler";
 import { printReport } from "./reports";
+import { crawlSiteAsync } from "./crawl";
 
 async function main() {
   if (process.argv.length < 3 || process.argv.length > 3) {
