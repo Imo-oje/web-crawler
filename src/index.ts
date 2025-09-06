@@ -1,6 +1,7 @@
 import * as process from "node:process";
 import pLimit from "p-limit";
 import { crawlSiteAsync } from "./concurrent-crawler";
+import { printReport } from "./reports";
 
 async function main() {
   if (process.argv.length < 3 || process.argv.length > 3) {
@@ -14,8 +15,7 @@ async function main() {
   const limit = pLimit(30);
 
   const pages = await crawlSiteAsync(baseURL, limit);
-
-  console.log(pages);
+  printReport(baseURL, pages);
   process.exit(0);
 }
 
