@@ -73,7 +73,6 @@ export const crawlPage = async (
     return pages;
   }
 
-  console.log("sameDomain", sameDomain);
   const currentURLNormalized = normalizeURL(currentURL);
 
   if (pages[currentURLNormalized] > 0) {
@@ -86,7 +85,6 @@ export const crawlPage = async (
   console.log(`Crawling ${currentURL}...`);
   let webpage: string;
   try {
-    console.log("currentUrl:", currentURL);
     webpage = (await getHTML(currentURL)) as string;
   } catch (error) {
     console.log(`${(error as Error).message}`);
@@ -95,9 +93,7 @@ export const crawlPage = async (
   console.log(`Finished crawling ${currentURL}`);
 
   const webpageURLS = getURLsFromHTML(webpage, baseURL);
-  console.log(webpageURLS);
   for (const nextUrl of webpageURLS) {
-    console.log("nextUrl: ", nextUrl);
     pages = await crawlPage(baseURL, nextUrl, pages);
   }
 
